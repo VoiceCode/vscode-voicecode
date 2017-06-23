@@ -10,6 +10,13 @@
     "categories": [
         "Other"
     ],
+    "keywords": [
+        "voice",
+        "dictation",
+        "speech",
+        "command",
+        "voice command",
+    ],
     "activationEvents": [
         "*"
     ],
