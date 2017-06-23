@@ -3,7 +3,7 @@
     "displayName": "VoiceCode",
     "description": "VSCode package/plugin that lets VoiceCode http://voicecode.io control VSCode",
     "version": "1.0.0",
-    "publisher": "voicecode",
+    "publisher": "VoiceCode",
     "engines": {
         "vscode": "^1.1.0"
     },
