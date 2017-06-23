@@ -1,14 +1,16 @@
 {
     "name": "voicecode",
-    "displayName": "voicecode",
-    "description": "",
-    "version": "0.0.1",
-    "publisher": "pancho111203",
+    "displayName": "VoiceCode",
+    "description": "VSCode package/plugin that lets VoiceCode http://voicecode.io control VSCode",
+    "version": "1.0.0",
+    "publisher": "voicecode",
     "engines": {
         "vscode": "^1.1.0"
     },
     "categories": [
-        "Other"
+        "Other",
+        "Accessibility",
+        "Productivity"
     ],
     "activationEvents": [
         "*"
