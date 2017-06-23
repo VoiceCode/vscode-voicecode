@@ -15,7 +15,7 @@
         "dictation",
         "speech",
         "command",
-        "voice command",
+        "voice command"
     ],
     "activationEvents": [
         "*"
