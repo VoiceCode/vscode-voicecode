@@ -1,5 +1,6 @@
 const vscode = require('vscode');
 const rpc = require('atomic_rpc');
+const _ = require('lodash');
 const helpers = require('./helpers');
 // this method is called when your extension is activated
 
@@ -135,6 +136,34 @@ function activate(context) {
             }
         }
     });
+    remote.expose('selectNextWord', (req) => {
+        const backwards = _.get(req, 'options.backwards', null);
+        const offset = backwards ? -1 : 1;
+        const editor = vscode.window.activeTextEditor;
+        const currentWordRange = editor.document.getWordRangeAtPosition(editor.selection.active);
+        const edgeOfWord = backwards ? currentWordRange.start : currentWordRange.end;
+        const startPos = currentWordRange ? edgeOfWord : editor.selection.active;
+        let nextWordRange = undefined;
+        let nextWordPosition = startPos;
+        while (nextWordRange === undefined) {                
+            try {
+                nextWordPosition = nextWordPosition.translate(0, offset);
+            } catch (e) {
+                nextWordPosition = editor.document.validatePosition(nextWordPosition.translate(offset, 0).with({ character: 9999 }));
+            }
+    
+            if (nextWordPosition !== editor.document.validatePosition(nextWordPosition)) {
+                nextWordPosition = nextWordPosition.translate(offset, 0).with({ character: 0 });
+                if (nextWordPosition !== editor.document.validatePosition(nextWordPosition)) {
+                    return;
+                }
+
+            }
+            nextWordRange = editor.document.getWordRangeAtPosition(nextWordPosition);
+        }
+        editor.selection = new vscode.Selection(nextWordRange.start, nextWordRange.end);
+    });
+
     remote.initialize();
 }
 
