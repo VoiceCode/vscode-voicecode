@@ -6,6 +6,12 @@ This integration is needed because many VoiceCode voice commands are more sophis
 
 There is no setup needed, as the extension is automatically connected on startup.
 
+## Configuration
+
+To make everything work, change the following setting in VSCode:
+
+```"editor.emptySelectionClipboard": false```
+
 ## Known Issues
 
 - If multiple windows of VSCode are open, the command will be executed in all of them
